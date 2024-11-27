@@ -1,0 +1,58 @@
+import math
+def add(n1, n2):
+    return n1 + n2
+
+def subtract(n1, n2):
+    return n1 - n2
+
+def multiply(n1, n2):
+    return n1 * n2
+
+def divide(n1, n2):
+    if n2 == 0:
+        return "Error: Division by zero"
+    return n1 / n2
+
+def sin(n1):
+    return math.sin(math.radians(n1))
+def cos(n1):
+    return math.cos(math.radians(n1))
+def tan(n1):
+    return math.tan(math.radians(n1))
+
+
+operator={
+    "+":add,
+    "-":subtract,
+    "*":multiply,
+    "/":divide,
+    "sin":sin,
+    "cos":sin,
+    "tan":sin,
+}
+
+again = True
+number1 = float(input("What is the first number:\n"))
+while again:
+
+    operation = input("What type of operation do you want to use? sin, cos, tan, +, -, /, *,\n")
+
+    if operation not in operator:
+        print("Invalid operation. Please choose sin cos tan +, -, *, or /.")
+        continue  # Restart the loop if the operation is invalid
+    if operation in ["sin","cos","tan"]:
+        result = operator[operation](number1)
+    else:
+        number2 = float(input("What is the second number:\n"))
+        result = operator[operation](number1, number2)
+
+    print(f"The result is {result}")
+
+    again = input("~~~Do you want to continue with the calculations?~~~\n~~~We will use the previous result.~~~\n~~~Yes/No~~~\n").lower()
+
+    if again not in ["yes" , "y"]:
+        print("Thank you for using our amazing calculator")
+        again = False
+    else:
+        number1 = result
+
